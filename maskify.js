@@ -12,3 +12,15 @@
 // "Skippy" --> "##ippy"
 // "Nananananananananananananananana Batman!" --> "####################################man!"
 
+function maskify(str){
+    let newMask = [];
+    let masked = str.split("").map((el, ind)=>{
+        if(ind < str.length-4){
+            return newMask.push("#");
+        }else{
+            return newMask.push(el);
+        }
+    });
+return newMask.join("");
+}
+console.log(maskify("Nananananananananananananananana Batman!"));
