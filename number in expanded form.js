@@ -17,14 +17,27 @@ function expandedForm(num) {
         return "";
     }
     for (let i=0;i<numArr.length;i++){
-      let result = numArr[i]*(10^(numArr.length-i));
-      if(num<=0){
-        continue;
+      if(numArr[i] * Math.pow(10,(numArr.length - (i+1)))>0){
+        newStr.push(numArr[i] * Math.pow(10,(numArr.length - (i+1))));
       }else{
-        newStr.push(result);
+        continue;
       }
     }
-    return newStr.join("+");
+    return newStr.join(" + ");
   }
 
-  console.log(expandedForm(1239));
+  console.log(expandedForm(70034));
+
+
+
+  /* 
+  another approach from codewars
+
+  const expandedForm = n => n.toString()
+                            .split("")
+                            .reverse()
+                            .map( (a, i) => a * Math.pow(10, i))
+                            .filter(a => a > 0)
+                            .reverse()
+                            .join(" + ");
+  */
