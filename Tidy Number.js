@@ -47,4 +47,3 @@ function tidyNumber(n) {
     }
     return strNum;
 }
-console.log(tidyNumber(2335));
