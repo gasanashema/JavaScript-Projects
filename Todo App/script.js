@@ -50,9 +50,17 @@ console.log(ul);
  ul.addEventListener('click',removeElement);
 
  function removeElement(event) {
-    if (event.target.tagName = 'BUTTON') {
-
-        
+    if (event.target.tagName == 'BUTTON') {
+        event.preventDefault();
+        event.target.parentElement.parentElement.remove();
+    }else if(event.target.tagName=='INPUT' && event.target.type == 'checkbox'){
+         let label = event.target.nextElementSibling;
+         
+            if (event.target.checked) {
+               label.style.textDecoration = "line-through";
+            } else {
+               label.style.textDecoration = "none";
+            }
     }
     
  }
