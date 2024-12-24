@@ -8,7 +8,10 @@ function validate() {
     if (parseInt(firstInput.value) > parseInt(secondInput.value)) {
         document.getElementById("errorMessage").textContent =
           "First number is larger";
-    } else {
-        document.getElementById("errorMessage").textContent = "Second number is larger";
+    } else if (parseInt(firstInput.value) < parseInt(secondInput.value)) {
+      document.getElementById("errorMessage").textContent =
+        "Second number is larger";
+    }else{
+        document.getElementById("errorMessage").textContent = "";
     }
 }
