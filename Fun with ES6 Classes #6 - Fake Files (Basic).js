@@ -104,6 +104,8 @@ class File {
         Object.defineProperty(this, "filename", { value: this.fullName.split('.').slice(0,-1).join('.'), writable: false});
         Object.defineProperty(this, "extension", { value: this.fullName.split('.').at(-1), writable: false});
         this.contents = contents;
+        this.counterItem = 0;
+        this.contentCounterItem = 0;
         
     }
 
@@ -111,18 +113,22 @@ class File {
         return this.contents;
     }
     write(str){
-        this.contents = `${this.contents}\n${str}`;
+        if (this.contents.length > 0) {
+            this.contents += "\n";
+        }
+        this.contents += str;
 
         return this.contents;
     }
-    gets(){
-        let cont = this.contents.split('\n');
-        let count = 0;
-        return function(){
-            return cont[count++];
-        }
+    gets() {
+        let lines = this.contents.split("\n");     
+       
+        return this.counterItem < lines.length ? lines[this.counterItem++] : undefined;
+      
     }
-    getc(){}
+    getc(){
+        return this.contentCounterItem < this.contents.length ? this.contents[this.contentCounterItem++] : undefined;
+    }
   }
 
 
@@ -162,12 +168,25 @@ class File {
 // console.log(myFile.getContents()); // "Line 1\nLine 2\nLine 3"
 
     /** Uncoment to test gets() */
-var myFile = new File("example.txt", "Line 1\nLine 2\nLine 3\nLine 4\nLine 5");
-console.log(myFile.gets()); // "Line 1"
-console.log(myFile.gets()); // "Line 2"
-console.log(myFile.gets()); // "Line 3"
-console.log(myFile.gets()); // "Line 4"
-console.log(myFile.gets()); // "Line 5"
-console.log(myFile.gets()); // undefined
-console.log(myFile.gets()); // undefined
-console.log(myFile.gets()); // undefined
+// var myFile = new File("example.txt", "Line 1\nLine 2\nLine 3\nLine 4\nLine 5");
+// console.log(myFile.gets()); // "Line 1"
+// console.log(myFile.gets()); // "Line 2"
+// console.log(myFile.gets()); // "Line 3"
+// console.log(myFile.gets()); // "Line 4"
+// console.log(myFile.gets()); // "Line 5"
+// console.log(myFile.gets()); // undefined
+// console.log(myFile.gets()); // undefined
+// console.log(myFile.gets()); // undefined
+
+    /** Uncoment to test getc() */
+// var myFile = new File("Lorem Ipsum.txt", "Lorem ipsum dolor sit amet, adispicing eu.");
+// console.log(myFile.getc()); // "L"
+// console.log(myFile.getc()); // "o"
+// console.log(myFile.getc()); // "r"
+// console.log(myFile.getc()); // "e"
+// console.log(myFile.getc()); // "m"
+// console.log(myFile.getc()); // " "
+// console.log(myFile.getc()); // "i"
+// console.log(myFile.getc()); // "p"
+// // ... (many calls to myFile.getc())
+// console.log(myFile.getc()); // undefined (when number of calls exceeds character count)
