@@ -1,3 +1,4 @@
+
 /**The problem:
 Having created a function NamedOne which takes first & last names as parameters and returns an object with firstName, lastName and fullName ( = firstName + a space + lastName ) properties which should be all accessibles, we discovered that "accessible" also means "mutable".
 
@@ -91,3 +92,4 @@ function NamedOne(first, last) {
 
     }
     
+

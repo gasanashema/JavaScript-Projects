@@ -10,29 +10,23 @@ No initial code will be given. You are free to use whatever syntax you like to c
  */
 
 class Cube {
-    constructor(length){
-        this.length = length;
-        this.area =  6*(Math.pow(this.length,2));
-        this.volume = Math.pow(this.length,3);
-    }
-    set surfaceArea(length){
-        this.length = length;
-        
-    }
-
-    get surfaceArea(){
-        return this.area;
-    }
-    set volume(length){
-        this.length = length;
-       
-    }
-    get volume(){
-        return this.volume;
-    }
+  constructor(length) {
+    this.length = length;
   }
-  var cube = new Cube(1);
 
-  let cube1 = cube.surfaceArea = 8;
+  get surfaceArea() {
+    return 6 * Math.pow(this.length, 2);
+  }
 
-  console.log(cube1);
+  set surfaceArea(surfaceArea) {
+    this.length = Math.sqrt(surfaceArea / 6);
+  }
+
+  get volume() {
+    return Math.pow(this.length, 3);
+  }
+
+  set volume(volume) {
+    this.length = Math.cbrt(volume);
+  }
+}
