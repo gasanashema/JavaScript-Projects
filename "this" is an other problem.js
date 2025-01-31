@@ -46,50 +46,45 @@ namedOne.fullName // -> "Bill Smith" (unchanged)
 Can you change our function to create such a NamedOne object ? */
 
 function NamedOne(first, last) {
-    // -- SHOULD be changed --
-        this._firstName = first;
-        this._lastName = last;
-        this._fullName = this._firstName + ' ' + this._fullName;
+    this._firstName = first;
+    this._lastName = last;
 
-        Object.defineProperty(this,'firstName',{
-            get: function(){
-                return this._firstName;
-            },
-            set:function(newName){
-                if (typeof(newName) !== 'string') {
-                    return 'First name must be a string.';
-                }
-                this._firstName = newName;
+    Object.defineProperty(this, 'firstName', {
+        get: function () {
+            return this._firstName;
+        },
+        set: function (newName) {
+            this._firstName = newName;
+            this._updateFullName();
+        }
+    });
+
+    Object.defineProperty(this, 'lastName', {
+        get: function () {
+            return this._lastName;
+        },
+        set: function (newName) {
+            this._lastName = newName;
+            this._updateFullName();
+        }
+    });
+
+    Object.defineProperty(this, 'fullName', {
+        get: function () {
+            return this._firstName + ' ' + this._lastName;
+        },
+        set: function (newName) {
+            let parts = newName.split(' ');
+            if (parts.length === 2) {
+                this._firstName = parts[0];
+                this._lastName = parts[1];
             }
-        });
+        }
+    });
 
-        Object.defineProperty(this,'lastName',{
-            get: function(){
-                return this._lastName;
-            },
-            set:function(newName){
-                if (typeof(newName) !== 'string') {
-                    return 'Last name must be a string.';
-                }
-                this._lastName = newName;
-            }
-        });
 
-        Object.defineProperty(this,'fullName',{
-            get: function(){
-                return this._fullName;
-            },
-            set:function(newName){
-                let validate = newName.split()
-                if (typeof(newName) !== 'string') {
-                    return 'Last name must be a string.';
-                }
-                this._lastName = newName;
-            }
-        });
-
-        
-
-    }
-    
+    this._updateFullName = function () {
+        this._fullName = this._firstName + ' ' + this._lastName;
+    };
+}
 
