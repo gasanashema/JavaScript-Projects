@@ -16,7 +16,7 @@ Output:
 'Vatsan took his dog for a spin'
  */
 //  const sentence = (arrOfObj) => arrOfObj.map(x=>Object.keys(x)).flat().map(Number).sort((a,b)=>a-b).map(x=>x+'');
- const sentence = (arrOfObj) => Object.fromEntries(arrOfObj.map(x=>Object.entries(x)).flat().sort((a,b)=>a[0].localeCompare(b[0])));
+  const sentence = (arrOfObj) => arrOfObj.map(x=>Object.entries(x)).flat().sort((a,b)=>a[0]-b[0]).map(x=>x[1]).join(' ');
  List = [
     {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
     {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
