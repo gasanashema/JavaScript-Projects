@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Quiz App</h1>
+        <div id="quiz-container">
+            <h2 id="question" class="text-lg font-semibold mb-4">Question will appear here...</h2>
+            <div id="answers" class="grid gap-2">
+                <button class="bg-gray-200 p-2 rounded w-full hover:bg-gray-300">Answer 1</button>
+                <button class="bg-gray-200 p-2 rounded w-full hover:bg-gray-300">Answer 2</button>
+                <button class="bg-gray-200 p-2 rounded w-full hover:bg-gray-300">Answer 3</button>
+                <button class="bg-gray-200 p-2 rounded w-full hover:bg-gray-300">Answer 4</button>
+            </div>
+            <button id="next-btn" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 w-full">Next</button>
+        </div>
+        <div id="result-container" class="hidden text-center">
+            <h2 class="text-xl font-bold mb-4">Your Score: <span id="score">0</span></h2>
+            <button id="restart-btn" class="bg-green-500 text-white px-4 py-2 rounded">Restart</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
