@@ -22,10 +22,22 @@ const incrementString = (strng) => {
     if ( /^[A-Za-z]+$/.test(strng)) {
         return strng+'1'
     }
-    let nbrPart = strng.split('').filter(x=>/\d/.test(x)).join('');
-    let strPart = strng.split('').filter(x=>/^[A-Za-z]$/.test(x)).join('');
-    let result = [...strPart,...new Array(nbrPart.length - (+nbrPart+1).toString().length).fill(0),(+nbrPart+1)].join('');
+    let sasa = [];
+    let nbrPart = strng.split('').reverse();
+    for (const nbr in nbrPart) {
+        if (/\d/.test(nbrPart[nbr])) {
+            sasa.push(nbrPart[nbr]);
+        }else{
+            break;
+        }
+    }
+    let data = sasa.reverse().join('')
+    let strPart = strng.split('').slice(0,strng.length - sasa.length).join('');
+    let size = (data.length - ((+data+1).toString()).length)<0?0:data.length - ((+data+1).toString()).length;
+    let result = [...strPart,...new Array(size).fill(0),(+data+1)].join('');
     return result;
   }
 
   console.log(incrementString('fo99obar99'));
+  console.log(incrementString('foo099'));
+  console.log(incrementString('foo0042'));
