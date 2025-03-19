@@ -1,5 +1,5 @@
-/**
- * Description:
+/* 
+Description:
 ISBN-10 identifiers are ten digits long. The first nine characters are digits 0-9. The last digit can be 0-9 or X, to indicate a value of 10.
 
 An ISBN-10 number is valid if the sum of the digits multiplied by their position modulo 11 equals zero.
@@ -19,8 +19,17 @@ Examples
 1234512345   -->  false
 048665088X   -->  true
 X123456788   -->  false
- */
+ 
+*/
 
-const validISBN10 = isbn => isbn.length === 10 && isbn.toString().split('').map(x=>(/\d/).test(x)?Number(x):10).reduce((acc,val,ind)=>acc+=(val*(ind+1))) % 11 === 0;
+const validISBN10 = (isbn) =>
+  isbn.length === 10 &&
+  isbn
+    .toString()
+    .split("")
+    .map((x, i) => (/\d/.test(x) ? Number(x) : i == 9 ? 10 : false))
+    .reduce((acc, val, ind) => (acc += val * (ind + 1))) %
+    11 ===
+    0;
 
-console.log(validISBN10('048665088X'));
+console.log(validISBN10("048665088X"));
