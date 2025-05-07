@@ -6,8 +6,7 @@ const options = {
 }
 async function getJoke(url,options) {
   return await fetch(url,options)
-    .then((res) => res.json())
+    .then((res) => res.json()).then(console.log)
     .catch((err) => console.error("error: ", err));
 }
-joke = getJoke("https://icanhazdadjoke.com/",options).then(res=>res).catch('invalid request');
-document.body.innerHTML = joke;
+getJoke("https://icanhazdadjoke.com/",options);
