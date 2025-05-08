@@ -9,7 +9,10 @@ async function displayInUl() {
         li.innerHTML = `Id: ${el.id}, name: ${el.name}, username: ${el.username}`;
         ul.appendChild(li);
     }
-    return Promise.resolve(ul);
+    return ul;
 }
 
-console.log((displayInUl()))
+displayInUl().then(ul => {
+    document.body.innerHTML = '';
+    document.body.appendChild(ul);
+});
