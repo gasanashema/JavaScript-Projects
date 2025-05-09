@@ -74,9 +74,14 @@ async function fetchWithRetry(url,options,retries = 3){
 }
 
 async function fetchFirstUserWithRetries(){
-    let user = await fetchWithRetry(url);
-    const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user[0]}`);
-    return await posts;
+    let getUser = await fetchWithRetry(url);
+    const user = getUser[0];
+    const getPosts = await fetchWithRetry(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+    const posts = getPosts;
+    const fullData = {user,posts};
+    return fullData;
 }
 
-fetchFirstUserWithRetries().then(console.log);
+fetchFirstUserWithRetries()
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
