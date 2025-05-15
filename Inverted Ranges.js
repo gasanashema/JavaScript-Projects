@@ -35,12 +35,23 @@ invertedRanges([[0, 25], [51, 75]]) == [[26, 50], [76, 100]];
  */
 
 const invertedRanges = ranges => {
-    const result = [];
-  for (let i = 0; i < ranges.length; i++) {
-    let interval = i==0 && ranges[0][0]==0? result.push([ranges[i][1]+1,ranges[i+1][0]-1]):0;
-    
+  const result = [];
+  let current = 0;
+
+  for (const [start, end] of ranges) {
+    if (current < start) {
+      result.push([current, start - 1]);
+    }
+    current = end + 1;
   }
+
+  if (current <= 100) {
+    result.push([current, 100]);
+  }
+
+  return result;
 }
+
 // test cases
 console.log(invertedRanges([[0, 25], [51, 75]]));
 
