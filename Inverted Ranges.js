@@ -28,13 +28,30 @@ A list of ranges which cover some numbers between 0 and 100 must return the rang
 invertedRanges([[0, 25], [51, 75]]) == [[26, 50], [76, 100]];
  */
 
+/**
+ * Conditions to check
+ * 1. if ranges[0][0]==0 then check if ranges[0][1]==ranges[1][0]+1 then compare ranges[1][1]==100 --->[]
+ * 2. if ranges[0][0]!=0 then results[0][0]=ranges[0]-1 and if ranges[1][0]!=ranges[0][1]+1
+ */
+
 const invertedRanges = ranges => {
-    const result = [];
-  for (let i = 0; i < ranges.length; i++) {
-    let interval = i==0 && ranges[0][0]==0? result.push([ranges[i][1]+1,ranges[i+1][0]-1]):0;
-    
+  const result = [];
+  let current = 0;
+
+  for (const [start, end] of ranges) {
+    if (current < start) {
+      result.push([current, start - 1]);
+    }
+    current = end + 1;
   }
+
+  if (current <= 100) {
+    result.push([current, 100]);
+  }
+
+  return result;
 }
+
 // test cases
 console.log(invertedRanges([[0, 25], [51, 75]]));
 
