@@ -14,7 +14,9 @@ Examples:
 // Should return ["2016.img1","2016.img2"]
  */
 function sortPhotos(pics){
-   const sortByYear = pics.map(x=>x.split('.')).map(x=>[Number(x[0]),x[1]]).sort();
+   const sortByYear = pics.map(x=>x.split('.')).map(x=>[Number(x[0]),x[1]]).sort((x,y)=>x[0]-y[0]).reduce((acc,val)=>{
+    acc.val[0]
+   },{});
    return sortByYear;
   };
   console.log(sortPhotos(["2016.img1","2016.img2","2015.img3","2016.img4","2013.img5"]));
