@@ -32,5 +32,13 @@ Current Temperature: 18°C
 
 
 async function weather(country) {
-    
+    const req1 = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+    const res1 = await req1.json()
+    let latlng = res1[0].latlng;
+    const req2 = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latlng[0]}&longitude=${latlng[1]}&current_weather=true`
+    );
+    const res2 = await req2.json();
+    return res2;
 }
+weather('rwanda').then(x=>x.current_weather).then(console.log);
