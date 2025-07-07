@@ -25,4 +25,31 @@ function solve(x, y) {
     return count;
    };
 
-   console.log(solve(10,100));
+   console.log(solve(0,88));
+
+   /** //Answer form Codewars answers
+const upsideDownNumbers = {
+  "0": 0,
+  "1": 1,
+  "8": 8,
+  "6": 9,
+  "9": 6
+};
+
+function isUpsideDown(number) {
+  const result = +number.toString().split("").reverse().map(item => upsideDownNumbers[item]).join("");
+  
+  return result === number;
+}
+
+function solve(x, y) {
+  let count = 0;
+  for (let i = x; i < y; i++) {
+    if(isUpsideDown(i)) {
+      count++;
+    }
+  }
+  
+  return count;
+};
+    */
