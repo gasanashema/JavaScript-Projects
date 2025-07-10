@@ -11,9 +11,5 @@ You are not allowed to use any other functions
 You are not allowed to use any other keywords
 
  */
-swap = ary => {
-    ary[0]=ary[0]+ary[1]
-    ary[1]=ary[0]-ary[1]
-    ary[0]=ary[0]-ary[1]
-    return ary;
-  }
+swap = ary => [ary[1],ary[0]];
+console.log(swap([123,456]))
